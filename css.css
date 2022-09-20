@@ -1,7 +1,7 @@
 body {
     min-width: 420px;
     background-color: lightcyan;
-    font-family: 'Courier New', Courier, monospace;
+    font-family: 'Jetbrains Mono', 'Courier New', Courier, monospace;
 }
 
 h1 {
@@ -38,4 +38,18 @@ h1 {
 
 .table tbody tr:nth-of-type(even) {
     background-color: rgb(249, 204, 148);
+}
+
+.section-select-exchange {
+    margin-bottom: 10px;
+}
+
+.section-select-exchange select {
+    height: 25px;  
+    font-family: 'Jetbrains Mono', 'Courier New', Courier, monospace;    
+}
+
+
+.section-select-exchange input option {
+    font-family: 'Jetbrains Mono', 'Courier New', Courier, monospace;
 }

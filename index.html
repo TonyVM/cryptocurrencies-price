@@ -10,13 +10,16 @@
 <body>
     <div class="container">
         <h1>Cryptocurrencies Prices on Binance</h1>
-        <label for="exchangesInput">Select and exchange</label>
-        <input id="exchangesInput" list="exchangeList"/>
-        <datalist id="exchangeList">
-            <option value="">Kucoin</option>
-            <option value="">Coinbase</option>
-            <option value="">Coinex</option>
-        </datalist>
+
+        <section class="section-select-exchange">
+            <label for="exchangesInput">Select an exchange</label>            
+            <select name="exchanges" id="exchanges">
+                <option value="Kucoin">Kucoin</option>
+                <option value="Coinex">Coinex</option>
+                <option value="Coinbase">Coinbase</option>
+            </select>
+        </section>
+        
         <table class="table">
             <thead>
                 <tr>

@@ -1,8 +1,7 @@
 const binanceAPI = 'https://api.binance.com/'
 const endpointPrices = 'https://api.binance.com/api/v3/ticker/price'
-const endpointPriceChange = ''
 const dataBody = document.querySelector('#data')
-
+const selectExchange = document.querySelector('#exchanges')
 
 fetch(endpointPrices)
     .then( response => response.json())
@@ -20,3 +19,16 @@ function renderData(_data) {
     });
     dataBody.innerHTML = row
 }
+
+//this is the option selected in the <Select List>
+let selectedOpt = selectExchange.options[selectExchange.selectedIndex].value
+
+/**
+ * listen the change and save the value, then 
+ * in an other action re-render the table with the prices in selected Exchange
+ * 
+ */
+selectExchange.addEventListener('change', () => {
+    const selectedOpt = selectExchange.options[selectExchange.selectedIndex].value
+    console.log(selectExchange.options[selectExchange.selectedIndex].value)
+})

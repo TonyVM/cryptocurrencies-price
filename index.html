@@ -9,14 +9,14 @@
 </head>
 <body>
     <div class="container">
-        <h1>Cryptocurrencies Prices on Binance</h1>
+        <h1>Cryptocurrencies Prices <span id="exchangeToShow"></span></h1>
 
         <section class="section-select-exchange">
             <label for="exchangesInput">Select an exchange</label>            
-            <select name="exchanges" id="exchanges">
+            <select name="exchanges" id="exchangesList">
+                <option selected></option>
                 <option value="Kucoin">Kucoin</option>
-                <option value="Coinex">Coinex</option>
-                <option value="Coinbase">Coinbase</option>
+                <option value="Binance">Binance</option>
             </select>
         </section>
         

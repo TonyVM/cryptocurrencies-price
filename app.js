@@ -2,6 +2,7 @@ const binanceAPI = 'https://api.binance.com/'
 const endPointPricesBinance = 'https://api.binance.com/api/v3/ticker/price'
 const dataBody = document.querySelector('#data')
 const selectExchange = document.querySelector('#exchangesList')
+//https://api.kucoin.com/api/v1/prices   https://api.kucoin.com/api/v1/market/allTickers
 const endPointPricesKucoin = 'https://api.kucoin.com/api/v1/market/allTickers'
 const exchangeNameH1 = document.querySelector('#exchangeToShow')
 
@@ -12,13 +13,11 @@ const exchangeNameH1 = document.querySelector('#exchangeToShow')
 //     .catch( error => console.log(error))
 
 function getDataFromAPI(_endpoint, _exchange) {
-    fetch(endPointPricesBinance)
-        .then( response =>  response.json() )
-        .then( data => { 
-            // renderData(data, _exchange);
-            console.log(data)            
-        })
-        .catch( error => console.log(error))
+    console.log(`El endpoint seleccionado es ${_endpoint}`);
+    fetch(_endpoint)
+        .then( response => response.json() )
+        .then( data => renderData(data, _exchange) )        
+        .catch( error => console.log(error) )
 }
 
 //analizar bien por que no renderiza la info de kucoin
@@ -31,17 +30,24 @@ function renderData(_data, _exchange) {
                 <td class=".border-bottom">${e.symbol}</td>
                 <td class=".border-bottom">${e.price}</td>
                 </tr>`
-            // console.log(e)
         })
     } 
     if (_exchange === 'Kucoin') {
-        _data.forEach( e => {
+        _data.data.ticker.forEach( e => {
             row += `<tr>
-                <td class=".border-bottom">${e.data.key}</td>
-                <td class=".border-bottom">${e.data.value}</td>
+                <td class=".border-bottom">${e.symbol}</td>
+                <td class=".border-bottom">${e.last}</td>
                 </tr>`
-            // console.log(e)
         })
+        
+        /**
+         * for this endpoint https://api.kucoin.com/api/v1/prices
+        Object.keys(_data.data).forEach( k => {
+            row += `<tr>
+                <td class=".border-bottom">${k}</td>
+                <td class=".border-bottom">${_data.data[k]}</td>
+                </tr>`
+        })*/
     }
     
     dataBody.innerHTML = row
@@ -56,9 +62,10 @@ function renderData(_data, _exchange) {
  * 
  */
 selectExchange.addEventListener('change', () => {
+    console.clear()
     console.log('click');
     let selectedOpt = selectExchange.options[selectExchange.selectedIndex].value
-    console.log(selectExchange.selectedIndex +' => '+selectExchange.options[selectExchange.selectedIndex].value)
+    console.log(selectExchange.selectedIndex +' => '+ selectedOpt)
     if(selectedOpt === '')
         alert("Please, select a valid exchange")
     else {
@@ -74,13 +81,3 @@ selectExchange.addEventListener('change', () => {
         }
     }
 })
-
-
-/**
- * {
-  "code": "200000",
-  "data": {
-    "AGLD": "0.32466492"
-    }
-}
- */

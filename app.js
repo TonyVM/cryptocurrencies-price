@@ -15,6 +15,7 @@ const exchangeNameH1 = document.querySelector('#exchangeToShow')
 function getDataFromAPI(_endpoint, _exchange) {
     console.log(`El endpoint seleccionado es ${_endpoint}`);
     fetch(_endpoint)
+        
         .then( response => response.json() )
         .then( data => renderData(data, _exchange) )        
         .catch( error => console.log(error) )
@@ -48,8 +49,7 @@ function renderData(_data, _exchange) {
                 <td class=".border-bottom">${_data.data[k]}</td>
                 </tr>`
         })*/
-    }
-    
+    }    
     dataBody.innerHTML = row
 }
 
@@ -81,3 +81,8 @@ selectExchange.addEventListener('change', () => {
         }
     }
 })
+
+
+// function getDataFromAPIAxios(_endpoint, _exchange) {
+//     axios
+// }

@@ -40,15 +40,6 @@ function renderData(_data, _exchange) {
                 <td class=".border-bottom">${e.last}</td>
                 </tr>`
         })
-        
-        /**
-         * for this endpoint https://api.kucoin.com/api/v1/prices
-        Object.keys(_data.data).forEach( k => {
-            row += `<tr>
-                <td class=".border-bottom">${k}</td>
-                <td class=".border-bottom">${_data.data[k]}</td>
-                </tr>`
-        })*/
     }    
     dataBody.innerHTML = row
 }

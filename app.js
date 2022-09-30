@@ -1,3 +1,5 @@
+// import axios from "axios"
+
 const binanceAPI = 'https://api.binance.com/'
 const endPointPricesBinance = 'https://api.binance.com/api/v3/ticker/price'
 const dataBody = document.querySelector('#data')
@@ -5,6 +7,7 @@ const selectExchange = document.querySelector('#exchangesList')
 //https://api.kucoin.com/api/v1/prices   https://api.kucoin.com/api/v1/market/allTickers
 const endPointPricesKucoin = 'https://api.kucoin.com/api/v1/market/allTickers'
 const exchangeNameH1 = document.querySelector('#exchangeToShow')
+// import axios from 'axios'
 
 
 // fetch(endPointPricesBinance)
@@ -14,8 +17,7 @@ const exchangeNameH1 = document.querySelector('#exchangeToShow')
 
 function getDataFromAPI(_endpoint, _exchange) {
     console.log(`El endpoint seleccionado es ${_endpoint}`);
-    fetch(_endpoint)
-        
+    fetch(_endpoint)        
         .then( response => response.json() )
         .then( data => renderData(data, _exchange) )        
         .catch( error => console.log(error) )
@@ -62,10 +64,10 @@ selectExchange.addEventListener('change', () => {
     else {
         switch (selectedOpt) {
             case "Kucoin":
-                getDataFromAPI(endPointPricesKucoin, selectedOpt)
+                getDataFromAPIWithAxios(endPointPricesKucoin, selectedOpt)
                 break;
             case "Binance":
-                getDataFromAPI(endPointPricesBinance, selectedOpt)
+                getDataFromAPIWithAxios(endPointPricesBinance, selectedOpt)
                 break;            
             default:
                 break;
@@ -75,8 +77,11 @@ selectExchange.addEventListener('change', () => {
 
 
 function getDataFromAPIWithAxios(_endpoint, _exchange) {
+    console.log(`El endpoint seleccionado es ${_endpoint} y usado con axios`)
     axios({
         method: 'GET',
         url: _endpoint
-    }).then(res => res.data).catch()
+    }).then(res => {
+        renderData(res.data, _exchange)
+    }).catch(error => console.log(error))
 }

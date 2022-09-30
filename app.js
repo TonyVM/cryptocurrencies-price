@@ -74,9 +74,9 @@ selectExchange.addEventListener('change', () => {
 })
 
 
-function getDataFromAPIAxios(_endpoint, _exchange) {
+function getDataFromAPIWithAxios(_endpoint, _exchange) {
     axios({
         method: 'GET',
         url: _endpoint
-    }).then().catch()
+    }).then(res => res.data).catch()
 }
